@@ -38,5 +38,29 @@ app.get('/api/tweets', (req, resp) => {
 });
 
 
+app.get('/api/tweets/hashtags', (req, resp) => {
+    connection.query("select * from tweethashtags", (err, rows, fields) => {
+        if(err) {
+            console.log("error selecting data...");
+            resp.json({error: err.message});
+        } else {
+            resp.json(rows);
+        }
+    });
+});
+
+app.get('/api/tweets/places', (req, resp) => {
+    connection.query("select * from tweetplaces", (err, rows, fields) => {
+        if(err) {
+            console.log("error selecting data...");
+            resp.json({error: err.message});
+        } else {
+            resp.json(rows);
+        }
+    });
+});
+
+
+
 app.listen(3000);
 console.log("Listening on port 3000!");
